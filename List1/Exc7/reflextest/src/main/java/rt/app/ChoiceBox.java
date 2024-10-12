@@ -13,7 +13,7 @@ public class ChoiceBox
         }
         else
         {
-            IO.out("Error: unknown option: " + choice, IO.Color.RED);
+            IO.out("Error: unknown option: " + choice + "\n", IO.Color.RED);
         }
     }
 }
