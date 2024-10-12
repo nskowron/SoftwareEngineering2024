@@ -32,7 +32,7 @@ public class IO
 
     public static void out(String string, Color color)
     {
-        System.out.println(color.getCode() + string + Color.WHITE.getCode());
+        System.out.print(color.getCode() + string + Color.WHITE.getCode());
     }
 
     public static void out(String string)
