@@ -2,9 +2,12 @@ package rt.app;
 
 import java.util.Random;
 
-public class Test implements Runnable
+public final class Test implements Runnable
 {
-    private static Random random = new Random();
+    private static final Random RANDOM = new Random();
+    private static final int WAIT_MIN = 1000;
+    private static final int WAIT_MAX = 3000;
+    private static final long SUSPICIOUS_SCORE = 5;
 
     public void run()
     {
@@ -12,7 +15,7 @@ public class Test implements Runnable
 
         try
         {
-            Thread.sleep(random.nextInt(2000) + 1000);
+            Thread.sleep(RANDOM.nextInt(WAIT_MAX - WAIT_MIN) + WAIT_MIN);
         }
         catch(InterruptedException e)
         {
@@ -20,7 +23,8 @@ public class Test implements Runnable
             System.exit(1);
         }
 
-        long start, end;
+        long start;
+        long end;
 
         IO.out("###", IO.Color.RED);
         start = System.currentTimeMillis();
@@ -30,6 +34,7 @@ public class Test implements Runnable
         long score = end - start;
         IO.out("\nYour score is ", IO.Color.WHITE);
         IO.out(Long.toString(score), IO.Color.GREEN);
-        IO.out(score < 5 ? "ms, godlike... suspicious...\n\n" : "ms, congratulations!\n\n", IO.Color.WHITE);
+        IO.out(score < SUSPICIOUS_SCORE
+            ? "ms, godlike... suspicious...\n\n" : "ms, congratulations!\n\n", IO.Color.WHITE);
     }
 }

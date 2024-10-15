@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class ChoiceBox
 {
-    public ChoiceBox(HashMap<String, Runnable> choices)
+    public ChoiceBox(final HashMap<String, Runnable> choices)
     {
         String choice = IO.in();
         if(choices.containsKey(choice))

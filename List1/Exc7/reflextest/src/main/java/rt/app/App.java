@@ -2,9 +2,9 @@ package rt.app;
 
 import java.util.HashMap;
 
-public class App
+public final class App
 {
-    public static void main(String[] args)
+    public static void main(final String[] args)
     {
         IO.out("\n\n~ Welcome to ReflexTest! ~\n\n", IO.Color.GREEN);
 
@@ -16,7 +16,7 @@ public class App
 
         HashMap<String, Runnable> choices = new HashMap<>();
 
-        Runnable quit = () -> {System.exit(0);};
+        Runnable quit = () -> { System.exit(0); };
         choices.put("q", quit);
         choices.put("Q", quit);
         choices.put("quit", quit);
@@ -30,5 +30,10 @@ public class App
 
         IO.out("Start new test, or Quit [sq]? : ");
         new ChoiceBox(choices);
+    }
+
+    private App() throws InstantiationError
+    {
+        throw new InstantiationError("Cannot create instance of a static class App.");
     }
 }

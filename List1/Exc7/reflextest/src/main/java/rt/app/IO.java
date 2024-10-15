@@ -2,9 +2,9 @@ package rt.app;
 
 import java.util.Scanner;
 
-public class IO
+public final class IO
 {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     private IO() throws InstantiationError
     {
@@ -19,7 +19,7 @@ public class IO
 
         private final String ansiCode;
 
-        private Color(String code)
+        Color(final String code)
         {
             ansiCode = code;
         }
@@ -30,18 +30,18 @@ public class IO
         }
     }
 
-    public static void out(String string, Color color)
+    public static void out(final String string, final Color color)
     {
         System.out.print(color.getCode() + string + Color.WHITE.getCode());
     }
 
-    public static void out(String string)
+    public static void out(final String string)
     {
         out(string, Color.WHITE);
     }
 
     public static String in()
     {
-        return scanner.nextLine();
+        return SCANNER.nextLine();
     }
 }
