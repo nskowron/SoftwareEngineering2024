@@ -2,8 +2,9 @@ package app;
 
 public class Library
 {
-    public Library(DataHandler dh)
+    public static void main(String[] args)
     {
-        
+        LibraryDataHandler library = new LibraryDataHandler_Mimic();
+        new UI(library);
     }
 }

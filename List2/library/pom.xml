@@ -30,7 +30,7 @@
                 <version>3.1.0</version>
 
                 <configuration>
-                    <mainClass>app.Main</mainClass>
+                    <mainClass>app.Library</mainClass>
                 </configuration>
             </plugin>
 

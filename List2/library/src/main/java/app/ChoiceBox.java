@@ -1,10 +1,10 @@
 package app;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class ChoiceBox
 {
-    public ChoiceBox(final String prompt, final HashMap<String, Runnable> choices)
+    public ChoiceBox(final String prompt, final Map<String, Runnable> choices)
     {
         IO.out(prompt);
         
