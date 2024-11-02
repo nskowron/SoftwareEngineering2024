@@ -11,26 +11,22 @@ public class UI extends CleanRunnable
     private AtomicBoolean running;
     private Map<String, Runnable> choices;
 
-    public UI(LibraryDataHandler library)
+    public UI(final LibraryDataHandler library)
     {
         this.running = new AtomicBoolean(true);
         this.choices = new HashMap<>();
 
-        Runnable add = new RunAdd(library);
-        choices.put("a", add);
-        choices.put("A", add);
+        choices.put("a", new RunAdd(library));
+        choices.put("A", choices.get("a"));
 
-        Runnable crs = new RunCrs(library);
-        choices.put("c", crs);
-        choices.put("C", crs);
+        choices.put("c", new RunCrs(library));
+        choices.put("C", choices.get("c"));
 
-        Runnable inf = new RunInf(library);
-        choices.put("i", inf);
-        choices.put("I", inf);
+        choices.put("i", new RunInf(library));
+        choices.put("I", choices.get("i"));
 
-        Runnable quit = () -> { running.set(false); };
-        choices.put("q", quit);
-        choices.put("Q", quit);
+        choices.put("q", () -> { running.set(false); });
+        choices.put("Q", choices.get("q"));
     }
 
     @Override

@@ -6,11 +6,11 @@ import java.util.Map;
 
 import app.IO.Color;
 
-public class RunInf extends CleanRunnable
+public final class RunInf extends CleanRunnable
 {
     private Map<String, Runnable> options;
 
-    public RunInf(LibraryDataHandler library)
+    public RunInf(final LibraryDataHandler library)
     {
         this.options = new HashMap<>();
 
@@ -96,7 +96,7 @@ public class RunInf extends CleanRunnable
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-            catch(IOException | IllegalArgumentException e)
+            catch(IOException e)
             {
                 IO.out("\n" + e.getMessage() + "\n", Color.RED);
 

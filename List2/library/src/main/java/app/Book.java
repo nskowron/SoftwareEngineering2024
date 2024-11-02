@@ -12,7 +12,7 @@ public class Book
     private boolean available;
     private int ownerID;
 
-    public Book(int ID, String title, String author, boolean available, int ownerID)
+    public Book(final int ID, final String title, final String author, final boolean available, final int ownerID)
     {
         this.ID = ID;
 
@@ -23,37 +23,37 @@ public class Book
         this.ownerID = ownerID;
     }
 
-    public Book(String title, String author)
+    public Book(final String title, final String author)
     {
         this(-1, title, author, true, -1);
     }
 
-    public int getID()
+    public final int getID()
     {
         return ID;
     }
 
-    public String getTitle()
+    public final String getTitle()
     {
         return title;
     }
 
-    public String getAuthor()
+    public final String getAuthor()
     {
         return author;
     }
 
-    public boolean isAvailable()
+    public final boolean isAvailable()
     {
         return available;
     }
 
-    public int getOwnerID()
+    public final int getOwnerID()
     {
         return ownerID;
     }
 
-    public void borrowBook(int customerID) throws IllegalAccessException
+    public final void borrowBook(final int customerID) throws IllegalAccessException
     {
         if(available == false)
         {
@@ -64,7 +64,7 @@ public class Book
         available = false;
     }
 
-    public void returnBook() throws IllegalAccessException
+    public final void returnBook() throws IllegalAccessException
     {
         if(available)
         {
@@ -76,7 +76,7 @@ public class Book
     }
 
     @Override
-    public boolean equals(Object obj)
+    public boolean equals(final Object obj)
     {
         if (this == obj)
         {
@@ -89,7 +89,9 @@ public class Book
         }
 
         Book book = (Book) obj;
-        return this.ID == book.getID() && title.equals(book.getTitle()) && author.equals(book.getAuthor());
+        return  this.ID == book.getID() &&
+                title.equals(book.getTitle()) &&
+                author.equals(book.getAuthor());
     }
 
     @Override

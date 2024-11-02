@@ -8,12 +8,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import app.IO.Color;
 
-public class RunSearchCatalog extends CleanRunnable
+public final class RunSearchCatalog extends CleanRunnable
 {
     private AtomicBoolean running;
     private Map<String, Runnable> options;
 
-    public RunSearchCatalog(LibraryDataHandler library)
+    public RunSearchCatalog(final LibraryDataHandler library)
     {
         running = new AtomicBoolean(true);
         options = new HashMap<>();
@@ -27,7 +27,10 @@ public class RunSearchCatalog extends CleanRunnable
                 IO.out("\nAll our books\n");
                 for(Book book : books)
                 {
-                    IO.out("\n" + book.getID() + ". " + book.getTitle() + " by " + book.getAuthor() + " ");
+                    IO.out(
+                        "\n" + book.getID() + ". " +
+                        book.getTitle() + " by " + book.getAuthor() + " ");
+
                     if(book.isAvailable())
                     {
                         IO.out("Available", Color.GREEN);
@@ -64,7 +67,10 @@ public class RunSearchCatalog extends CleanRunnable
                 IO.out("\nAll matching books\n");
                 for(Book book : books)
                 {
-                    IO.out("\n" + book.getID() + ". " + book.getTitle() + " by " + book.getAuthor() + " ");
+                    IO.out(
+                        "\n" + book.getID() + ". " +
+                        book.getTitle() + " by " + book.getAuthor() + " ");
+
                     if(book.isAvailable())
                     {
                         IO.out("Available", Color.GREEN);
@@ -105,7 +111,7 @@ public class RunSearchCatalog extends CleanRunnable
                     Show All books [a]
                     Search books by Title [t]
                     Quit catalog [q]
-                    
+
                     What do you want to do?: 
                     """, options);
 

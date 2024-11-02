@@ -6,11 +6,11 @@ import java.util.Map;
 
 import app.IO.Color;
 
-public class RunCrs extends CleanRunnable
+public final class RunCrs extends CleanRunnable
 {
     private Map<String, Runnable> options;
 
-    public RunCrs(LibraryDataHandler library)
+    public RunCrs(final LibraryDataHandler library)
     {
         this.options = new HashMap<>();
 
@@ -28,7 +28,8 @@ public class RunCrs extends CleanRunnable
 
                 library.borrowBook(customer, book);
 
-                IO.out("\nSuccessfully rented " + book.getTitle() + " to " + customer.getName() + " " + customer.getLastName() + "\n", Color.GREEN);
+                IO.out("\nSuccessfully rented " + book.getTitle() + " to " +
+                        customer.getName() + " " + customer.getLastName() + "\n", Color.GREEN);
 
                 IO.out("\n(enter)\n");
                 IO.in();
@@ -62,7 +63,8 @@ public class RunCrs extends CleanRunnable
 
                 library.returnBook(library.getBook(bookID));
 
-                IO.out("\nSuccessfully picked up " + book.getTitle() + " from " + customer.getName() + " " + customer.getLastName() + "\n", Color.GREEN);
+                IO.out( "\nSuccessfully picked up " + book.getTitle() + " from " +
+                        customer.getName() + " " + customer.getLastName() + "\n", Color.GREEN);
 
                 IO.out("\n(enter)\n");
                 IO.in();
@@ -98,7 +100,8 @@ public class RunCrs extends CleanRunnable
 
                 library.updateCustomer(customerID, updated);
 
-                IO.out("\nSuccessfully changed " + customer.getName() + " " + customer.getLastName() + "'s email address to " + email + "\n", Color.GREEN);
+                IO.out("\nSuccessfully changed " + customer.getName() + " " + customer.getLastName() +
+                        "'s email address to " + email + "\n", Color.GREEN);
 
                 IO.out("\n(enter)\n");
                 IO.in();
@@ -110,7 +113,7 @@ public class RunCrs extends CleanRunnable
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-            catch(IOException | IllegalArgumentException e)
+            catch(IOException e)
             {
                 IO.out("\n" + e.getMessage() + "\n", Color.RED);
 

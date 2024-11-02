@@ -14,7 +14,7 @@ public class Customer
 
     private List<Book> books;
 
-    public Customer(int ID, String name, String lastName, String email, List<Book> books)
+    public Customer(final int ID, final String name, final String lastName, final String email, final List<Book> books)
     {
         this.ID = ID;
 
@@ -25,58 +25,58 @@ public class Customer
         this.books = books;
     }
 
-    public Customer(String name, String lastName, String email)
+    public Customer(final String name, final String lastName, final String email)
     {
         this(-1, name, lastName, email, new ArrayList<Book>());
     }
 
-    public int getID()
+    public final int getID()
     {
         return ID;
     }
 
-    public String getName()
+    public final String getName()
     {
         return name;
     }
 
-    public String getLastName()
+    public final String getLastName()
     {
         return lastName;
     }
 
-    public String getEmail()
+    public final String getEmail()
     {
         return email;
     }
 
-    public List<Book> getBooks()
+    public final List<Book> getBooks()
     {
         return books;
     }
 
-    public void borrowBook(Book book) throws IllegalArgumentException
+    public final void borrowBook(final Book book) throws IllegalAccessException
     {
         if(books.contains(book))
         {
-            throw new IllegalArgumentException("Customer has already borrowed " + book.getTitle());
+            throw new IllegalAccessException("Customer has already borrowed " + book.getTitle());
         }
 
         books.add(book);
     }
 
-    public void returnBook(Book book) throws IllegalArgumentException
+    public final void returnBook(final Book book) throws IllegalAccessException
     {
         if(!books.contains(book))
         {
-            throw new IllegalArgumentException("Customer has not borrowed " + book.getTitle());
+            throw new IllegalAccessException("Customer has not borrowed " + book.getTitle());
         }
 
         books.remove(book);
     }
 
     @Override
-    public boolean equals(Object obj)
+    public boolean equals(final Object obj)
     {
         if(this == obj)
         {

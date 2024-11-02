@@ -42,31 +42,31 @@ public class CustomerTest {
     }
 
     @Test
-    public void testBorrowBookSuccess() {
+    public void testBorrowBookSuccess() throws IllegalAccessException {
         customer.borrowBook(book1);
         assertTrue(customer.getBooks().contains(book1));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testBorrowBookThrowsExceptionWhenAlreadyBorrowed() {
+    @Test(expected = IllegalAccessException.class)
+    public void testBorrowBookThrowsExceptionWhenAlreadyBorrowed() throws IllegalAccessException {
         customer.borrowBook(book1); // First borrow
         customer.borrowBook(book1); // Attempt to borrow again should throw exception
     }
 
     @Test
-    public void testReturnBookSuccess() {
+    public void testReturnBookSuccess() throws IllegalAccessException {
         customer.borrowBook(book1); // First borrow
         customer.returnBook(book1); // Now return it
         assertFalse(customer.getBooks().contains(book1));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testReturnBookThrowsExceptionWhenNotBorrowed() {
+    @Test(expected = IllegalAccessException.class)
+    public void testReturnBookThrowsExceptionWhenNotBorrowed() throws IllegalAccessException {
         customer.returnBook(book1); // Attempt to return a book not borrowed should throw exception
     }
 
     @Test
-    public void testGetBooks() {
+    public void testGetBooks() throws IllegalAccessException {
         customer.borrowBook(book1);
         customer.borrowBook(book2);
         List<Book> borrowedBooks = customer.getBooks();

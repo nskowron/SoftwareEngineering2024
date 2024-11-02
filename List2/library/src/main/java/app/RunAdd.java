@@ -6,11 +6,11 @@ import java.util.Map;
 
 import app.IO.Color;
 
-public class RunAdd extends CleanRunnable
+public final class RunAdd extends CleanRunnable
 {
     private Map<String, Runnable> options;
 
-    public RunAdd(LibraryDataHandler library)
+    public RunAdd(final LibraryDataHandler library)
     {
         this.options = new HashMap<>();
 
@@ -31,7 +31,7 @@ public class RunAdd extends CleanRunnable
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-            catch(IOException | IllegalArgumentException e)
+            catch(IOException e)
             {
                 IO.out("\n" + e.getMessage() + "\n", Color.RED);
 
@@ -56,7 +56,7 @@ public class RunAdd extends CleanRunnable
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-            catch(IOException | IllegalArgumentException e)
+            catch(IOException e)
             {
                 IO.out("\n" + e.getMessage() + "\n", Color.RED);
 
