@@ -2,6 +2,7 @@ package app;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Customer
 {
@@ -72,5 +73,31 @@ public class Customer
         }
 
         books.remove(book);
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(this == obj)
+        {
+            return true;
+        }
+
+        if(obj == null || getClass() != obj.getClass())
+        {
+            return false;
+        }
+
+        Customer customer = (Customer) obj;
+        return ID == customer.ID &&
+                name.equals(customer.name) &&
+                lastName.equals(customer.lastName) &&
+                email.equals(customer.email);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(ID, name, lastName, email);
     }
 }

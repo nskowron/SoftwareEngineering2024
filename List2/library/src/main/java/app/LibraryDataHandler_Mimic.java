@@ -37,40 +37,29 @@ public class LibraryDataHandler_Mimic extends LibraryDataHandler
     // Updating system data (eg. when borrowing a book)
     public void updateBook(int ID, Book updatedBook) throws IOException
     {
-        boolean found = false;
-
-        for(Book book : books)
+        for (int i = 0; i < books.size(); i++)
         {
-            if(book.getID() == ID)
+            if(books.get(i).getID() == ID)
             {
-                found = true;
-                book = updatedBook;
+                books.set(i, updatedBook);
+                return;
             }
         }
-
-        if(found == false)
-        {
-            throw new IOException("Wrong ID");
-        }
+    
+        throw new IOException("Wrong ID");
     }
 
     public void updateCustomer(int ID, Customer updatedCustomer) throws IOException
     {
-        boolean found = false;
-
-        for(Customer customer : customers)
-        {
-            if(customer.getID() == ID)
+        for (int i = 0; i < customers.size(); i++) {
+            if(customers.get(i).getID() == ID)
             {
-                found = true;
-                customer = updatedCustomer;
+                customers.set(i, updatedCustomer);
+                return;
             }
         }
-
-        if(found == false)
-        {
-            throw new IOException("Wrong ID");
-        }
+    
+        throw new IOException("Wrong ID");
     }
 
     // Searching for book copies
