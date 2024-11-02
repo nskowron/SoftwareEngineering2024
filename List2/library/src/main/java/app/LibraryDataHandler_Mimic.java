@@ -18,7 +18,7 @@ public class LibraryDataHandler_Mimic extends LibraryDataHandler
     // Adding new data to the system
     public int addNewBook(Book book) throws IOException
     {
-        Book assigned = new Book(books.size(), book.getTitle(), book.getAuthor(), book.isAvailable());
+        Book assigned = new Book(books.size(), book.getTitle(), book.getAuthor(), book.isAvailable(), book.getOwnerID());
         book = assigned;
         books.add(book);
 

@@ -27,24 +27,20 @@ public abstract class LibraryDataHandler
     public abstract Customer getCustomerByEmail(String email) throws IOException;
 
     // Borrowing and returning books
-    public void borrowBook(Customer customer, Book book) throws IllegalArgumentException, IOException
+    public void borrowBook(Customer customer, Book book) throws IllegalAccessException, IOException
     {
-        if(book.isAvailable() == false)
-        {
-            throw new IllegalArgumentException("Book not available to borrow");
-        }
-
         customer.borrowBook(book);
-        book.setAvailable(false);
+        book.borrowBook(customer.getID());
 
         updateCustomer(customer.getID(), customer);
         updateBook(book.getID(), book);
     }
 
-    public void returnBook(Customer customer, Book book) throws IllegalArgumentException, IOException
+    public void returnBook(Book book) throws IllegalAccessException, IOException
     {
+        Customer customer = getCustomer(book.getOwnerID());
         customer.returnBook(book);
-        book.setAvailable(true);
+        book.returnBook();
 
         updateCustomer(customer.getID(), customer);
         updateBook(book.getID(), book);

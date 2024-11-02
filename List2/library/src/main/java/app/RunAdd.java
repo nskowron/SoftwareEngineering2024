@@ -14,7 +14,7 @@ public class RunAdd extends CleanRunnable
     {
         this.options = new HashMap<>();
 
-        Runnable newCustomer = () -> 
+        options.put("c", () -> 
         {
             IO.out("Customer's first name: ");
             String name = IO.in();
@@ -38,12 +38,10 @@ public class RunAdd extends CleanRunnable
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-        };
+        });
+        options.put("C", options.get("c"));
 
-        options.put("c", newCustomer);
-        options.put("C", newCustomer);
-
-        Runnable newBook = () -> 
+        options.put("b", () -> 
         {
             IO.out("Book title: ");
             String title = IO.in();
@@ -65,10 +63,8 @@ public class RunAdd extends CleanRunnable
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-        };
-
-        options.put("b", newBook);
-        options.put("B", newBook);
+        });
+        options.put("B", options.get("b"));
     }
 
     @Override

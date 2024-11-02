@@ -14,7 +14,7 @@ public class RunCrs extends CleanRunnable
     {
         this.options = new HashMap<>();
 
-        Runnable borrowBook = () -> 
+        options.put("b", () -> 
         {
             try
             {
@@ -40,31 +40,27 @@ public class RunCrs extends CleanRunnable
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-            catch(IOException | IllegalArgumentException e)
+            catch(IOException | IllegalAccessException e)
             {
                 IO.out("\n" + e.getMessage() + "\n", Color.RED);
 
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-        };
+        });
+        options.put("B", options.get("b"));
 
-        options.put("b", borrowBook);
-        options.put("B", borrowBook);
-
-        Runnable returnBook = () -> 
+        options.put("r", () -> 
         {
             try
             {
-                IO.out("Customer's ID: ");
-                int customerID = Integer.parseInt(IO.in());
                 IO.out("Book ID: ");
                 int bookID = Integer.parseInt(IO.in());
 
-                Customer customer = library.getCustomer(customerID);
                 Book book = library.getBook(bookID);
+                Customer customer = library.getCustomer(book.getOwnerID());
 
-                library.returnBook(library.getCustomer(customerID), library.getBook(bookID));
+                library.returnBook(library.getBook(bookID));
 
                 IO.out("\nSuccessfully picked up " + book.getTitle() + " from " + customer.getName() + " " + customer.getLastName() + "\n", Color.GREEN);
 
@@ -78,19 +74,17 @@ public class RunCrs extends CleanRunnable
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-            catch(IOException | IllegalArgumentException e)
+            catch(IOException | IllegalAccessException e)
             {
                 IO.out("\n" + e.getMessage() + "\n", Color.RED);
 
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-        };
+        });
+        options.put("R", options.get("R"));
 
-        options.put("r", returnBook);
-        options.put("R", returnBook);
-
-        Runnable changeEmail = () -> 
+        options.put("e", () -> 
         {
             try
             {
@@ -123,16 +117,14 @@ public class RunCrs extends CleanRunnable
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-        };
-
-        options.put("e", changeEmail);
-        options.put("E", changeEmail);
+        });
+        options.put("E", options.get("e"));
     }
 
     @Override
     public void run()
     {
         super.run();
-        new ChoiceBox("Borrow / Return a book or change customer's Email address [bre]: ", options);
+        new ChoiceBox("Borrow/Return a book or change customer's Email address [bre]: ", options);
     }
 }

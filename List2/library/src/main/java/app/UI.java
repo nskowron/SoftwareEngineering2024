@@ -13,8 +13,8 @@ public class UI extends CleanRunnable
 
     public UI(LibraryDataHandler library)
     {
-        running = new AtomicBoolean(true);
-        choices = new HashMap<>();
+        this.running = new AtomicBoolean(true);
+        this.choices = new HashMap<>();
 
         Runnable add = new RunAdd(library);
         choices.put("a", add);
@@ -37,6 +37,8 @@ public class UI extends CleanRunnable
     public void run()
     {
         super.run();
+
+        running.set(true);
         IO.out("\n\nLibrary system up. Welcome.\n\n", Color.GREEN);
 
         while(running.get())
@@ -47,7 +49,8 @@ public class UI extends CleanRunnable
                     Get Info about something [i]
                     Quit system [q]
                     
-                    What do you want to do?:  """, choices);
+                    What do you want to do?: 
+                    """, choices);
 
             super.run();
         }

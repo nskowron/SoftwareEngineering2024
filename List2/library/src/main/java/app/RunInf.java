@@ -14,7 +14,7 @@ public class RunInf extends CleanRunnable
     {
         this.options = new HashMap<>();
 
-        Runnable customerInfo = () -> 
+        options.put("c", () -> 
         {
             IO.out("Customer's ID or email: ");
             String email = IO.in();
@@ -56,12 +56,10 @@ public class RunInf extends CleanRunnable
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-        };
+        });
+        options.put("C", options.get("c"));
 
-        options.put("c", customerInfo);
-        options.put("C", customerInfo);
-
-        Runnable bookInfo = () -> 
+        options.put("b", () -> 
         {
             try
             {
@@ -84,6 +82,7 @@ public class RunInf extends CleanRunnable
                 else
                 {
                     IO.out("Not available", Color.RED);
+                    IO.out("\nBorrowed by " + book.getOwnerID());
                 }
                 IO.out("\n");
 
@@ -104,14 +103,11 @@ public class RunInf extends CleanRunnable
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-        };
+        });
+        options.put("B", options.get("b"));
 
-        options.put("b", bookInfo);
-        options.put("B", bookInfo);
-
-        Runnable searchCatalog = new RunSearchCatalog(library);
-        options.put("s", searchCatalog);
-        options.put("S", searchCatalog);
+        options.put("s", new RunSearchCatalog(library));
+        options.put("S", options.get("s"));
     }
 
     @Override

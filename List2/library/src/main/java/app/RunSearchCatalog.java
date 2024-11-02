@@ -18,7 +18,7 @@ public class RunSearchCatalog extends CleanRunnable
         running = new AtomicBoolean(true);
         options = new HashMap<>();
 
-        Runnable all = ()  ->
+        options.put("a", () ->
         {
             try
             {
@@ -49,12 +49,10 @@ public class RunSearchCatalog extends CleanRunnable
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-        };
+        });
+        options.put("A", options.get("a"));
 
-        options.put("a", all);
-        options.put("A", all);
-
-        Runnable byTitle = ()  ->
+        options.put("t", ()  ->
         {
             IO.out("Title: ");
             String title = IO.in();
@@ -88,20 +86,18 @@ public class RunSearchCatalog extends CleanRunnable
                 IO.out("\n(enter)\n");
                 IO.in();
             }
-        };
+        });
+        options.put("T", options.get("t"));
 
-        options.put("t", byTitle);
-        options.put("T", byTitle);
-
-        Runnable quit = () -> { running.set(false); };
-        options.put("q", quit);
-        options.put("Q", quit);
+        options.put("q", () -> { running.set(false); });
+        options.put("Q", options.get("q"));
     }
 
     @Override
     public void run()
     {
         super.run();
+
         running.set(true);
         while(running.get())
         {
@@ -110,7 +106,8 @@ public class RunSearchCatalog extends CleanRunnable
                     Search books by Title [t]
                     Quit catalog [q]
                     
-                    What do you want to do?: """, options);
+                    What do you want to do?: 
+                    """, options);
 
             super.run();
         }
