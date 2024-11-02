@@ -16,18 +16,22 @@ public class LibraryDataHandler_Mimic extends LibraryDataHandler
     }
 
     // Adding new data to the system
-    public void addNewBook(Book book) throws IOException
+    public int addNewBook(Book book) throws IOException
     {
         Book assigned = new Book(books.size(), book.getTitle(), book.getAuthor(), book.isAvailable());
         book = assigned;
         books.add(book);
+
+        return book.getID();
     }
 
-    public void addNewCustomer(Customer customer) throws IOException
+    public int addNewCustomer(Customer customer) throws IOException
     {
         Customer assigned = new Customer(customers.size(), customer.getName(), customer.getLastName(), customer.getEmail(), customer.getBooks());
         customer = assigned;
         customers.add(customer);
+
+        return customer.getID();
     }
 
     // Updating system data (eg. when borrowing a book)

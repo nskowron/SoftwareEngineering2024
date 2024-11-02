@@ -1,5 +1,7 @@
 package app;
 
+import java.util.Objects;
+
 public class Book
 {
     private int ID;
@@ -64,5 +66,11 @@ public class Book
 
         Book book = (Book) obj;
         return this.ID == book.getID() && title.equals(book.getTitle()) && author.equals(book.getAuthor());
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(ID, title, author, available);
     }
 }

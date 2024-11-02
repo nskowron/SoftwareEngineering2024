@@ -6,8 +6,8 @@ import java.util.List;
 public abstract class LibraryDataHandler
 {
     // Adding new data to the system
-    public abstract void addNewBook(Book book) throws IOException;
-    public abstract void addNewCustomer(Customer customer) throws IOException;
+    public abstract int addNewBook(Book book) throws IOException;
+    public abstract int addNewCustomer(Customer customer) throws IOException;
 
     // Updating system data (eg. when borrowing a book)
     public abstract void updateBook(int ID, Book updatedBook) throws IOException;
@@ -29,6 +29,11 @@ public abstract class LibraryDataHandler
     // Borrowing and returning books
     public void borrowBook(Customer customer, Book book) throws IllegalArgumentException, IOException
     {
+        if(book.isAvailable() == false)
+        {
+            throw new IllegalArgumentException("Book not available to borrow");
+        }
+
         customer.borrowBook(book);
         book.setAvailable(false);
 

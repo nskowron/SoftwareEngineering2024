@@ -6,7 +6,7 @@ import java.util.Map;
 
 import app.IO.Color;
 
-public class RunCrs implements Runnable
+public class RunCrs extends CleanRunnable
 {
     private Map<String, Runnable> options;
 
@@ -29,14 +29,23 @@ public class RunCrs implements Runnable
                 library.borrowBook(customer, book);
 
                 IO.out("\nSuccessfully rented " + book.getTitle() + " to " + customer.getName() + " " + customer.getLastName() + "\n", Color.GREEN);
+
+                IO.out("\n(enter)\n");
+                IO.in();
             }
             catch(NumberFormatException e)
             {
                 IO.out("\nInvalid ID - needs to be a number\n", Color.RED);
+
+                IO.out("\n(enter)\n");
+                IO.in();
             }
             catch(IOException | IllegalArgumentException e)
             {
                 IO.out("\n" + e.getMessage() + "\n", Color.RED);
+
+                IO.out("\n(enter)\n");
+                IO.in();
             }
         };
 
@@ -58,14 +67,23 @@ public class RunCrs implements Runnable
                 library.returnBook(library.getCustomer(customerID), library.getBook(bookID));
 
                 IO.out("\nSuccessfully picked up " + book.getTitle() + " from " + customer.getName() + " " + customer.getLastName() + "\n", Color.GREEN);
+
+                IO.out("\n(enter)\n");
+                IO.in();
             }
             catch(NumberFormatException e)
             {
                 IO.out("\nInvalid ID - needs to be a number\n", Color.RED);
+
+                IO.out("\n(enter)\n");
+                IO.in();
             }
             catch(IOException | IllegalArgumentException e)
             {
                 IO.out("\n" + e.getMessage() + "\n", Color.RED);
+
+                IO.out("\n(enter)\n");
+                IO.in();
             }
         };
 
@@ -87,14 +105,23 @@ public class RunCrs implements Runnable
                 library.updateCustomer(customerID, updated);
 
                 IO.out("\nSuccessfully changed " + customer.getName() + " " + customer.getLastName() + "'s email address to " + email + "\n", Color.GREEN);
+
+                IO.out("\n(enter)\n");
+                IO.in();
             }
             catch(NumberFormatException e)
             {
                 IO.out("\nInvalid ID - needs to be a number\n", Color.RED);
+
+                IO.out("\n(enter)\n");
+                IO.in();
             }
             catch(IOException | IllegalArgumentException e)
             {
                 IO.out("\n" + e.getMessage() + "\n", Color.RED);
+
+                IO.out("\n(enter)\n");
+                IO.in();
             }
         };
 
@@ -102,8 +129,10 @@ public class RunCrs implements Runnable
         options.put("E", changeEmail);
     }
 
+    @Override
     public void run()
     {
-        new ChoiceBox("\nBorrow / Return a book or change customer's Email address [bre]: ", options);
+        super.run();
+        new ChoiceBox("Borrow / Return a book or change customer's Email address [bre]: ", options);
     }
 }

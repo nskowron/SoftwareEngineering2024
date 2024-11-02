@@ -6,7 +6,7 @@ import java.util.Map;
 
 import app.IO.Color;
 
-public class RunAdd implements Runnable
+public class RunAdd extends CleanRunnable
 {
     private Map<String, Runnable> options;
 
@@ -25,12 +25,18 @@ public class RunAdd implements Runnable
 
             try
             {
-                library.addNewCustomer(new Customer(name, lastName, email));
-                IO.out("\nSuccessfully added new customer\n", Color.GREEN);
+                int ID = library.addNewCustomer(new Customer(name, lastName, email));
+                IO.out("\nSuccessfully added new customer - new ID = " + ID + "\n", Color.GREEN);
+
+                IO.out("\n(enter)\n");
+                IO.in();
             }
             catch(IOException | IllegalArgumentException e)
             {
                 IO.out("\n" + e.getMessage() + "\n", Color.RED);
+
+                IO.out("\n(enter)\n");
+                IO.in();
             }
         };
 
@@ -46,12 +52,18 @@ public class RunAdd implements Runnable
 
             try
             {
-                library.addNewBook(new Book(title, author));
-                IO.out("\nSuccessfully added new book\n", Color.GREEN);
+                int ID = library.addNewBook(new Book(title, author));
+                IO.out("\nSuccessfully added new book - new ID = " + ID + "\n", Color.GREEN);
+
+                IO.out("\n(enter)\n");
+                IO.in();
             }
             catch(IOException | IllegalArgumentException e)
             {
                 IO.out("\n" + e.getMessage() + "\n", Color.RED);
+
+                IO.out("\n(enter)\n");
+                IO.in();
             }
         };
 
@@ -59,8 +71,10 @@ public class RunAdd implements Runnable
         options.put("B", newBook);
     }
 
+    @Override
     public void run()
     {
-        new ChoiceBox("\nAdd new Customer or Book [cb]: ", options);
+        super.run();
+        new ChoiceBox("Add new Customer or Book [cb]: ", options);
     }
 }
