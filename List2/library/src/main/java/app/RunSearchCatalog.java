@@ -107,13 +107,11 @@ public final class RunSearchCatalog extends CleanRunnable
         running.set(true);
         while(running.get())
         {
-            new ChoiceBox("""
-                    Show All books [a]
-                    Search books by Title [t]
-                    Quit catalog [q]
-
-                    What do you want to do?: 
-                    """, options);
+            new ChoiceBox(
+                "Show All books [a]" +
+                "\nSearch books by Title [t]" +
+                "\nQuit catalog [q]" +
+                "\n\nWhat do you want to do?: ", options);
 
             super.run();
         }

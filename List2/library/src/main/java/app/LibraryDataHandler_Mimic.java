@@ -110,10 +110,10 @@ public final class LibraryDataHandler_Mimic extends LibraryDataHandler
     // Searching for distinct titles
     public List<Book> getTitles(final String title) throws IOException
     {
-        throw new IOException("""
-                        Because this is just a mimic of a real data handler 
-                        and does not have a real database with a search engine, 
-                        this method is not implemented""");
+        throw new IOException(
+                        "Because this is just a mimic of a real data handler " +
+                        "and does not have a real database with a search engine, " +
+                        "this method is not implemented");
     }
 
     public List<Book> getTitles() throws IOException

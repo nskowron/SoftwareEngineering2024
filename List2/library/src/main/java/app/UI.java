@@ -39,14 +39,12 @@ public class UI extends CleanRunnable
 
         while(running.get())
         {
-            new ChoiceBox("""
-                    Add something new to the system [a]
-                    Consumer related stuff (borrowing books etc.) [c]
-                    Get Info about something [i]
-                    Quit system [q]
-                    
-                    What do you want to do?: 
-                    """, choices);
+            new ChoiceBox(
+                    "Add something new to the system [a]" +
+                    "\nConsumer related stuff (borrowing books etc.) [c]" +
+                    "\nGet Info about something [i]" +
+                    "\nQuit system [q]" +
+                    "\n\nWhat do you want to do?: ", choices);
 
             super.run();
         }
