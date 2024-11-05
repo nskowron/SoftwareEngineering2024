@@ -6,6 +6,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import app.IO.Color;
 
+
+// Class UI is the main user input Controller
+
+// It controlls what other runnables (CLI "windows") will be executed
+// based on certain user input.
+// High Cohesion: UI is only concerned about executing right runnables on user input.
+// Low Coupling: It doesn't rely on the other classes' logic in any way
+// making it open to changes and easier to add new features.
 public class UI extends CleanRunnable
 {
     private AtomicBoolean running;

@@ -2,6 +2,11 @@ package app;
 
 import java.util.Objects;
 
+
+// Class Book in an Information Expert
+
+// It contains all and only the information strictly concerning itself
+// Which also helps maintain High Cohesion.
 public class Book
 {
     private int ID;

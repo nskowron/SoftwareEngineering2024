@@ -6,6 +6,12 @@ import java.util.Map;
 
 import app.IO.Color;
 
+
+// Class RunInf is a sub-UI concerned only by logic of managing information.
+
+// Controller: Similarly to UI, it acts as a controller for user input when running.
+// Low Coupling: It uses standarised LibraryDataHandler interface without relying on it's internal data.
+// High Cohesion: It has a strictly defined set of responsibilities.
 public final class RunInf extends CleanRunnable
 {
     private Map<String, Runnable> options;

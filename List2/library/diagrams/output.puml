@@ -1,4 +1,4 @@
-@startuml
+@startuml class
 skinparam classAttributeIconSize 0
 class LibraryDataHandler{
 + {abstract} addNewBook(book : Book) : int
@@ -36,51 +36,19 @@ class Customer{
 + hashCode() : int
 }
 Customer "1" -- "*" Book
-class RunSearchCatalog{
-- running : AtomicBoolean
-- options : Map<String,Runnable>
-+ RunSearchCatalog(library : LibraryDataHandler)
-+ run() : void
-}
-RunSearchCatalog --> LibraryDataHandler
-class RunAdd{
-- options : Map<String,Runnable>
-+ RunAdd(library : LibraryDataHandler)
-+ run() : void
-}
-RunAdd --> LibraryDataHandler
-class RunInf{
-- options : Map<String,Runnable>
-+ RunInf(library : LibraryDataHandler)
-+ run() : void
-}
-RunInf --> LibraryDataHandler
-class IO{
-- {static} SCANNER : Scanner
-- IO()
-+ {static} out(string : String, color : Color) : void
-+ {static} out(string : String) : void
-+ {static} in() : String
-}
 class UI{
 - running : AtomicBoolean
 - choices : Map<String,Runnable>
 + UI(library : LibraryDataHandler)
 + run() : void
 }
-class ChoiceBox{
-+ ChoiceBox(prompt : String, choices : Map<String,Runnable>)
-}
-UI --> RunCrs
-UI --> RunAdd
-UI --> RunInf
-RunInf -->RunSearchCatalog
+UI --> LibraryDataHandler
 class Library{
 - Library()
 + {static} main(args : String[]) : void
 }
-Library -- UI
-Library -- LibraryDataHandler
+Library --> UI
+Library --> LibraryDataHandler
 class Book{
 - ID : int
 - title : String
@@ -99,12 +67,6 @@ class Book{
 + equals(obj : Object) : boolean
 + hashCode() : int
 }
-class RunCrs{
-- options : Map<String,Runnable>
-+ RunCrs(library : LibraryDataHandler)
-+ run() : void
-}
-RunCrs --> LibraryDataHandler
 class LibraryDataHandler_Mimic{
 - books : List<Book>
 - customers : List<Customer>
@@ -122,10 +84,4 @@ class LibraryDataHandler_Mimic{
 + getCustomerByEmail(email : String) : Customer
 }
 LibraryDataHandler_Mimic --|> LibraryDataHandler
-enum Color{
-WHITE
-RED
-GREEN
-}
-Color -- IO
 @enduml

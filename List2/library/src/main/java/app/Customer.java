@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
+// Class Customer is an Information Expert
+
+// Customer and Book are two main "bricks" of data used by the system.
+// They help transport data concerning only themselves
+// between the UI and the system's DataManager.
 public class Customer
 {
     private int ID;

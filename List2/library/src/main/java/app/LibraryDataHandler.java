@@ -3,6 +3,15 @@ package app;
 import java.io.IOException;
 import java.util.List;
 
+
+// LibraryDataHandler is the main logic class of this application.
+
+// Controller: Controls and centralises requests for system data.
+// Low Coupling: It works as a black box between UI and possible database.
+// High Cohesion: It's focus lies solely on instantiating data from the system in a
+// standarised way (via Book and Customer)
+// Polymorphism: It's open to overriding it's methods by ones that prepare
+// database queries resembling a certain request.
 public abstract class LibraryDataHandler
 {
     // Adding new data to the system

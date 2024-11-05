@@ -139,12 +139,12 @@ public final class LibraryDataHandler_Mimic extends LibraryDataHandler
     {
         for(Customer customer : customers)
         {
-            if(customer.getEmail() == email)
+            if(customer.getEmail().equals(email))
             {
                 return customer;
             }
         }
 
-        throw new IOException("Wrong ID");
+        throw new IOException("Wrong emmail");
     }
 }
