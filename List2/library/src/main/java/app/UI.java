@@ -14,6 +14,9 @@ import app.IO.Color;
 // High Cohesion: UI is only concerned about executing right runnables on user input.
 // Low Coupling: It doesn't rely on the other classes' logic in any way
 // making it open to changes and easier to add new features.
+
+// Dependency Inversion: UI takes in an instance of LibraryDataHandler which helps maintain open-close.
+// Changing currently used instance of LDH into one that handles an actual database won't affect the UI.
 public class UI extends CleanRunnable
 {
     private AtomicBoolean running;
