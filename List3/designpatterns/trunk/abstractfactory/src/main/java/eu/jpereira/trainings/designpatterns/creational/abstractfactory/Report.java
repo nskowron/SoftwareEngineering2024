@@ -15,6 +15,9 @@
  */
 package eu.jpereira.trainings.designpatterns.creational.abstractfactory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import eu.jpereira.trainings.designpatterns.creational.abstractfactory.json.JSONReportBody;
 import eu.jpereira.trainings.designpatterns.creational.abstractfactory.json.JSONReportFooter;
 import eu.jpereira.trainings.designpatterns.creational.abstractfactory.json.JSONReportHeader;
@@ -31,23 +34,37 @@ public class Report {
 	private String reportType;
 	
 
-	
+	public Report(String type, Map<String, ReportFactory> factories)
+	{
+		this.reportType = type;
+
+		ReportFactory factory = factories.get(reportType);
+		if(factory == null)
+		{
+			factory = factories.get("XML");
+		}
+
+		this.setBody(factory.buildBody());
+		this.setFooter(factory.buildFooter());
+		this.setHeader(factory.buildHeader());
+	}
 	
 	/**
 	 * @param string
 	 */
-	public Report(String string) {
-		this.reportType = string;
-		if ( reportType.equals("JSON")) {
-			//to compose Report with JSON objects
-			this.setBody(new JSONReportBody());
-			this.setFooter(new JSONReportFooter());
-			this.setHeader(new JSONReportHeader());
-		} else {
-			this.setFooter(new XMLReportFooter());
-			this.setHeader(new XMLReportHeader());
-			this.setBody(new XMLReportBody());
-		}
+	public Report(String string)
+	{
+		this(string, getDefaultFactories());
+	}
+
+	private static Map<String, ReportFactory> getDefaultFactories()
+	{
+		Map<String, ReportFactory> defaultFactories = new HashMap<>();
+
+		defaultFactories.put("JSON", new JSONReportFactory());
+		defaultFactories.put("XML", new XMLReportFactory());
+
+		return defaultFactories;
 	}
 
 

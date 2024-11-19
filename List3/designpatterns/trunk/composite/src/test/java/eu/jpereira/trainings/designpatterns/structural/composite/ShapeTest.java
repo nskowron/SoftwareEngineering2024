@@ -90,7 +90,7 @@ public class ShapeTest {
 			assertEquals(2, aShape.getY());
 		}
 	}
-	
+	 
 	@Test
 	public void testMoveLeafsShapes() {
 		Shape testShape = createCompositeShapeFixture();
