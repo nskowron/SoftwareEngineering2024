@@ -9,21 +9,24 @@ import eu.jpereira.trainings.designpatterns.creational.abstractfactory.xml.XMLRe
 
 public interface ReportFactory
 {
-    ReportBody buildBody();
-    ReportHeader buildHeader();
-    ReportFooter buildFooter();
+    public ReportBody buildBody();
+    public ReportHeader buildHeader();
+    public ReportFooter buildFooter();
 }
 
 class JSONReportFactory implements ReportFactory
 {
+    @Override
     public ReportBody buildBody() {
         return new JSONReportBody();
     }
     
+    @Override
     public ReportHeader buildHeader() {
         return new JSONReportHeader();
     }
     
+    @Override
     public ReportFooter buildFooter() {
         return new JSONReportFooter();
     }
@@ -31,14 +34,17 @@ class JSONReportFactory implements ReportFactory
 
 class XMLReportFactory implements ReportFactory
 {
+    @Override
     public ReportBody buildBody() {
         return new XMLReportBody();
     }
     
+    @Override
     public ReportHeader buildHeader() {
         return new XMLReportHeader();
     }
     
+    @Override
     public ReportFooter buildFooter() {
         return new XMLReportFooter();
     }
