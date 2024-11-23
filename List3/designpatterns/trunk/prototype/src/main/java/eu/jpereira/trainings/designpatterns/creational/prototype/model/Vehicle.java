@@ -69,11 +69,59 @@ public class Vehicle implements Cloneable {
 	}
 
 	@Override
-	public Object clone() throws CloneNotSupportedException {
-		//TODO: Implement clone
-		return super.clone();
-	}
-	
-	
+	public boolean equals(Object obj)
+	{
+		if(!(obj instanceof Vehicle))
+		{
+			return false;
+		}
 
+		Vehicle other = (Vehicle)obj;
+		if(parts == null)
+		{
+			try
+			{
+				other.countParts();
+				return false;
+			}
+			catch(VehicleDoesNotHavePartsException e)
+			{
+				return true;
+			}
+		}
+		
+		try
+		{
+			for(VehiclePartEnumeration type : VehiclePartEnumeration.values())
+			{
+				if(!(getParts(type).equals(other.getParts(type))))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+		catch(VehicleDoesNotHavePartsException e)
+		{
+			return false;
+		}
+	}
+
+	@Override
+	public Object clone()
+	{
+		Vehicle clone = new Vehicle();
+
+		if(parts != null)
+		{
+			List<VehiclePart> clone_parts = new ArrayList<>();
+			for(VehiclePart part : parts)
+			{
+				clone_parts.add(part);
+			}
+			clone.setParts(clone_parts);
+		}
+		
+		return clone;
+	}
 }
